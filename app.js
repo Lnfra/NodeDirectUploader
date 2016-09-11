@@ -56,7 +56,11 @@ app.get('/account', (req, res) => res.render('account.html'));
  */
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
-  const fileName = req.query['file-name'];
+
+  //Note: fileName uploads the file into the sample folder in te s3 Bucket
+  //Consider replacing sample/ with object ID or some unique identifier to keep the files separate
+  const fileName = 'sample/' + req.query['file-name'];
+
   const fileType = req.query['file-type'];
   const s3Params = {
     Bucket: S3_BUCKET,
