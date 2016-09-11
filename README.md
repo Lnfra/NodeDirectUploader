@@ -31,6 +31,7 @@ $ npm install
 ```
 
 ## Running the application
+* Create IAM user with access to a particular bucket: http://mikeferrier.com/2011/10/27/granting-access-to-a-single-s3-bucket-using-amazon-iam/
 * Set environment variables for your AWS access key, secret, and bucket name (see [companion article](https://devcenter.heroku.com/articles/s3-upload-node))
 * Run `node app`
 * Visit [localhost:3000/account](http://localhost:3000/account) to try it out

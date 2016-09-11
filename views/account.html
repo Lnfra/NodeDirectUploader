@@ -75,7 +75,11 @@
     */
     function initUpload(){
       const files = document.getElementById('file-input').files;
-      const file = files[0];
+      var file = files[0];
+      console.log('file contents : ' + file.name);
+      file.name = 'object1234-' + file.name;
+      console.log('file contents : ' + file.name);
+      console.log('file contents : ' + file.type);
       if(file == null){
         return alert('No file selected.');
       }
