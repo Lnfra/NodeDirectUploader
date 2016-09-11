@@ -13,11 +13,21 @@
  */
 const express = require('express');
 const aws = require('aws-sdk');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 /*
  * Set-up and run the Express app.
  */
 const app = express();
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyParser.json());
+app.use(methodOverride());
+
 app.set('views', './views');
 app.use(express.static('./public'));
 app.engine('html', require('ejs').renderFile);
@@ -27,6 +37,11 @@ app.listen(process.env.PORT || 3000);
  * Load the S3 information from the environment variables.
  */
 const S3_BUCKET = process.env.S3_BUCKET;
+
+console.log('AWS ACCESS KEY : ' +  '[' +  process.env.AWS_ACCESS_KEY_ID + ']' )
+console.log('AWS SECRET ACCESS KEY : ' +  '[' +  process.env.AWS_SECRET_ACCESS_KEY + ']' )
+console.log('S3 BUCKET : ' +  '[' +  process.env.S3_BUCKET + ']' )
+
 
 /*
  * Respond to GET requests to /account.
@@ -72,4 +87,5 @@ app.get('/sign-s3', (req, res) => {
  */
 app.post('/save-details', (req, res) => {
   // TODO: Read POSTed form data and do something useful
+  res.json(req.body);
 });
